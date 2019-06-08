@@ -1,19 +1,19 @@
 <template>
-  <div>
+    <div>
 
-  </div>
+    </div>
 </template>
 
 <script>
 
 export default {
-  name: 'WeatherCard',
-  props: {
-      forecast: {
-        type: Object,
-        required: true
-      }
-  }
+    name: 'WeatherCard',
+    props: {
+        forecast: {
+            type: Object,
+            required: true
+        }
+    }
 }
 </script>
 
