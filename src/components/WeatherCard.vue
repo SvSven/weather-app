@@ -13,6 +13,12 @@ export default {
             type: Object,
             required: true
         }
+    },
+    data () {
+        return {
+            current: this.forecast.current,
+            upcoming: this.forecast.upcoming.list
+        }
     }
 }
 </script>
