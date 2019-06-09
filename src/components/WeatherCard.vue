@@ -19,6 +19,11 @@ export default {
             current: this.forecast.current,
             upcoming: this.forecast.upcoming.list
         }
+    },
+    filters: {
+        roundTemperature: function(temp) {
+            return Number.parseFloat(temp).toFixed(1);
+        }
     }
 }
 </script>
