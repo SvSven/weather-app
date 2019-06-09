@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <WeatherCard v-if="forecast" v-bind:forecast="forecast" />
+        <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
     </div>
 </template>
 
@@ -17,7 +17,10 @@ export default {
     data () {
         return {
             IP_INFO: null,
-            forecast: null
+            forecast: {
+                current: null,
+                upcoming: null
+            }
         }
     },
     mounted: function() {
@@ -26,6 +29,21 @@ export default {
         });
     },
     methods: {
+        getWeather: function(lat, lng) {
+            const params = {
+                lat: lat,
+                lon: lng,
+                units: 'metric',
+                appid: API.open_weather_map.key
+            }
+
+            axios.get(API.open_weather_map.url + 'weather', { params: params }).then(response => {
+                this.forecast.current = response.data;
+                return axios.get(API.open_weather_map.url + 'forecast', { params: params })
+            }).then(response => {
+                this.forecast.upcoming = response.data;
+            });
+        },
         forwardGeocode: function(location) {
             const params = {
                 q: location,
