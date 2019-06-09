@@ -4,12 +4,13 @@
             <h1 class="weather__header__title">{{ forecast.location.name }}</h1>
         </div>
 
-        <div class="weather__current">
-            <div class="weather__current__icon">
+        <div class="weather__current weather__summary">
+            <div class="weather__summary__icon">
                 <img :src="`http://openweathermap.org/img/w/${current.weather[0].icon}.png`" alt="">
             </div>
 
-            <h2 class="weather__current__summary">{{ current.main.temp | roundTemperature }}&deg; {{ current.weather[0].main }}</h2>
+            <h2 class="weather__summary__text">{{ current.main.temp | roundTemperature }}&deg; {{ current.weather[0].main }}</h2>
+        </div>
         </div>
     </div>
 </template>
@@ -50,6 +51,9 @@ export default {
 
         &__current {
             margin-top: 5px;
+        }
+
+        &__summary {
             display: flex;
             align-items: center;
 
@@ -57,7 +61,7 @@ export default {
                 margin-right: 5px;
             }
 
-            &__summary {
+            &__text {
                 font-size: 24px;
             }
         }
