@@ -18,6 +18,11 @@ export default {
         return {
             IP_INFO: null,
             forecast: {
+                location: {
+                    name: null,
+                    lat: null,
+                    lng: null
+                },
                 current: null,
                 upcoming: null
             }
