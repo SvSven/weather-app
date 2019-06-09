@@ -49,10 +49,10 @@ export default {
             }
 
             axios.get(API.open_weather_map.url + 'weather', { params: params }).then(response => {
-                this.forecast.current = response.data;
+                this.$set(this.forecast, 'current', response.data);
                 return axios.get(API.open_weather_map.url + 'forecast', { params: params })
             }).then(response => {
-                this.forecast.upcoming = response.data;
+                this.$set(this.forecast, 'upcoming', response.data);
             });
         },
         forwardGeocode: function(location) {

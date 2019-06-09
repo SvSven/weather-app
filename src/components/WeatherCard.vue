@@ -44,6 +44,10 @@ export default {
             upcoming: this.forecast.upcoming.list
         }
     },
+    beforeUpdate: function() {
+        this.$set(this, 'current', this.forecast.current);
+        this.$set(this, 'upcoming', this.forecast.upcoming.list);
+    },
     filters: {
         roundTemperature: function(temp) {
             return Number.parseFloat(temp).toFixed(1);
