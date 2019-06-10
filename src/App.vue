@@ -21,7 +21,8 @@ export default {
                 location: {
                     name: null,
                     lat: null,
-                    lng: null
+                    lng: null,
+                    timezone: null
                 },
                 current: null,
                 upcoming: null
