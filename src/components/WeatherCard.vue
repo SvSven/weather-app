@@ -18,9 +18,7 @@
         </div>
 
         <div class="weather__upcoming">
-
             <div v-for="(report, index) in forecast.upcoming.list.slice(0, 5)" v-bind:key="index" class="weather__upcoming__item weather__summary">
-
                 <time class="weather__summary__time" :datetime="report.dt | ISODateTime(forecast.location.timezone)">
                     {{ report.dt | shortDateTime(forecast.location.timezone) }}
                 </time>
@@ -29,7 +27,8 @@
                     <img :src="`http://openweathermap.org/img/w/${report.weather[0].icon}.png`" alt="">
                 </div>
 
-                <h2 class="weather__summary__text">{{ report.main.temp | roundTemperature }}&deg; {{ report.weather[0].main }}</h2>
+                <h2 class="weather__summary__text">{{ report.main.temp | roundTemperature }}&deg;</h2>
+                <h2 class="weather__summary__text">{{ report.weather[0].main }}</h2>
             </div>
         </div>
     </div>
@@ -63,6 +62,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    $border-color: #d3d3d3;
+
     .weather {
 
         &__header {
@@ -73,8 +74,6 @@ export default {
 
         &__current {
             margin: 3px 0 20px 0;
-            padding-bottom: 20px;
-            border-bottom: solid 2px #d3d3d3;
 
             .weather__summary__text {
                 font-size: 48px;
@@ -100,19 +99,36 @@ export default {
         }
 
         &__upcoming {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+
+            @media (min-width: 550px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media (min-width: 750px) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            @media (min-width: 950px) {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            &__item {
+                padding: 10px;
+                border: solid 1px $border-color;
+            }
 
             .weather__summary {
-                justify-content: center;
+                flex-direction: column;
 
                 &__time {
                     text-align: center;
+                    margin-bottom: 5px;
+                    padding-bottom: 5px;
+                    border-bottom: solid 1px $border-color;
                 }
-            }
-
-            &__item:not(:last-child) {
-                margin-right: 15px;
             }
         }
     }
