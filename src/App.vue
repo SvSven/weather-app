@@ -112,6 +112,13 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "bulma/sass/utilities/_all.sass";
+    @import "bulma/sass/base/_all.sass";
+    @import "bulma/sass/form/_all.sass";
+    @import "bulma/sass/elements/box.sass";
+    @import "bulma/sass/elements/button.sass";
+    @import "bulma/sass/elements/title.sass";
+
     html, body {
         width: 100%;
         height: 100%;
