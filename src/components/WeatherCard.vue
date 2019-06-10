@@ -16,7 +16,9 @@
 
             <div v-for="(report, index) in upcoming.slice(0, 5)" v-bind:key="index" class="weather__upcoming__item weather__summary">
 
-                <p class="weather__summary__time">{{ report.dt_txt }}</p>
+                <time class="weather__summary__time" :datetime="report.dt | ISODateTime(forecast.location.timezone)">
+                    {{ report.dt | shortDateTime(forecast.location.timezone) }}
+                </time>
 
                 <div class="weather__summary__icon">
                     <img :src="`http://openweathermap.org/img/w/${report.weather[0].icon}.png`" alt="">
