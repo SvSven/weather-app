@@ -55,6 +55,24 @@ export default {
                 this.$set(this.forecast, 'upcoming', response.data);
             });
         },
+        searchLocation: function() {
+            const location = this.$refs.searchInput.value;
+            this.$refs.searchInputHelp.innerHTML = '';
+
+            if (!location) {
+                this.$refs.searchInputHelp.innerHTML = 'You must provide a location first.';
+                return false;
+            }
+
+            this.forwardGeocode(location).then(response => {
+                if (response) {
+                    this.getWeather(this.forecast.location.lat, this.forecast.location.lng);
+                } else {
+                    this.$refs.searchInputHelp.innerHTML = 'We were unable to find that location.';
+                    return false;
+                }
+            });
+        },
         forwardGeocode: function(location) {
             const params = {
                 q: location,
