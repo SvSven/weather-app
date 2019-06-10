@@ -19,7 +19,8 @@
                     type="radio"
                     name="temperatureUnit"
                     value="metric"
-                    v-model="forecast.units">
+                    v-model="forecast.units"
+                    v-on:change="getWeather">
                 <label for="temperatureMetric">Celsius</label>
 
                 <input
@@ -28,7 +29,8 @@
                     type="radio"
                     name="temperatureUnit"
                     value="imperial"
-                    v-model="forecast.units">
+                    v-model="forecast.units"
+                    v-on:change="getWeather">
                 <label for="temperatureImperial">Fahrenheit</label>
             </div>
             <p ref="searchInputHelp" class="help is-danger"></p>
