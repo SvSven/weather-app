@@ -2,6 +2,19 @@
     <div id="app">
         <div class="container">
             <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
+            <div class="field search-field">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input ref="searchInput" class="input" type="text" placeholder="Search for a location" v-on:keyup.enter="searchLocation">
+                    </div>
+                    <div class="control">
+                        <a class="button is-info" v-on:click="searchLocation">
+                            Search
+                        </a>
+                    </div>
+                </div>
+                <p ref="searchInputHelp" class="help is-danger"></p>
+            </div>
         </div>
     </div>
 </template>
