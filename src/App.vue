@@ -33,11 +33,10 @@ export default {
         axios.get('https://get.geojs.io/v1/ip/geo.json').then(response => {
             this.IP_INFO = response.data;
 
-            this.forecast.location.name = this.IP_INFO.city + ', ' + this.IP_INFO.country;
-            this.forecast.location.lat = this.IP_INFO.latitude;
-            this.forecast.location.lng = this.IP_INFO.longitude;
-
-            this.getWeather(this.IP_INFO.latitude, this.IP_INFO.longitude);
+            const location = this.IP_INFO.city + ',' + this.IP_INFO.region + ',' + this.IP_INFO.country;
+            this.forwardGeocode(location).then(response => {
+                this.getWeather(this.forecast.location.lat, this.forecast.location.lng);
+            });
         });
     },
     methods: {
