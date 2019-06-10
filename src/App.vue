@@ -113,5 +113,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+    #app {
+        padding-top: 50px;
+    }
 </style>

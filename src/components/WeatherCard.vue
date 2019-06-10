@@ -64,7 +64,6 @@ export default {
 
 <style scoped lang="scss">
     .weather {
-        margin: 50px 0;
 
         &__header {
             &__title {
