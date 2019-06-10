@@ -12,6 +12,25 @@
                     </a>
                 </div>
             </div>
+            <div class="field">
+                <input
+                    class="is-checkradio"
+                    id="temperatureMetric"
+                    type="radio"
+                    name="temperatureUnit"
+                    value="metric"
+                    v-model="forecast.units">
+                <label for="temperatureMetric">Celsius</label>
+
+                <input
+                    class="is-checkradio"
+                    id="temperatureImperial"
+                    type="radio"
+                    name="temperatureUnit"
+                    value="imperial"
+                    v-model="forecast.units">
+                <label for="temperatureImperial">Fahrenheit</label>
+            </div>
             <p ref="searchInputHelp" class="help is-danger"></p>
         </div>
         <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
@@ -39,8 +58,9 @@ export default {
                     timezone: null
                 },
                 current: null,
-                upcoming: null
-            }
+                upcoming: null,
+                units: 'metric'
+            },
         }
     },
     mounted: function() {
@@ -58,7 +78,7 @@ export default {
             const params = {
                 lat: lat,
                 lon: lng,
-                units: 'metric',
+                units: this.forecast.units,
                 appid: API.open_weather_map.key
             }
 
@@ -118,6 +138,7 @@ export default {
     @import "bulma/sass/elements/box.sass";
     @import "bulma/sass/elements/button.sass";
     @import "bulma/sass/elements/title.sass";
+    @import "bulma-checkradio/dist/css/bulma-checkradio.sass";
 
     html, body {
         width: 100%;
