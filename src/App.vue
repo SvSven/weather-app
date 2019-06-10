@@ -70,7 +70,7 @@ export default {
             this.IP_INFO = response.data;
 
             const location = this.IP_INFO.city + ',' + this.IP_INFO.region + ',' + this.IP_INFO.country;
-            this.forwardGeocode(location).then(response => {
+            this.forwardGeocode(location).then(() => {
                 this.getWeather();
             });
         });
