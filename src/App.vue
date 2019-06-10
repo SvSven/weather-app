@@ -64,6 +64,12 @@ export default {
 
             return axios.get(API.geocode.url, { params: params }).then(response => {
                 if (response.data.total_results > 0) {
+                    const location = response.data.results[0];
+                    this.forecast.location.name = location.formatted;
+                    this.forecast.location.lat = location.geometry.lat;
+                    this.forecast.location.lng = location.geometry.lng;
+                    this.forecast.location.timezone = location.annotations.timezone.name;
+
                     return response.data;
                 } else {
                     return false;
