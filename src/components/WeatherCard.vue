@@ -2,6 +2,9 @@
     <div class="weather">
         <div class="weather__header">
             <h1 class="weather__header__title">{{ forecast.location.name }}</h1>
+            <time :datetime="current.dt | ISODateTime(forecast.location.timezone)" class="weather__header__time">
+                {{ current.dt | shortDateTime(forecast.location.timezone) }}
+            </time>
         </div>
 
         <div class="weather__current weather__summary">
