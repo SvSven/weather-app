@@ -69,15 +69,15 @@ export default {
 
             const location = this.IP_INFO.city + ',' + this.IP_INFO.region + ',' + this.IP_INFO.country;
             this.forwardGeocode(location).then(response => {
-                this.getWeather(this.forecast.location.lat, this.forecast.location.lng);
+                this.getWeather();
             });
         });
     },
     methods: {
-        getWeather: function(lat, lng) {
+        getWeather: function() {
             const params = {
-                lat: lat,
-                lon: lng,
+                lat: this.forecast.location.lat,
+                lon: this.forecast.location.lng,
                 units: this.forecast.units,
                 appid: API.open_weather_map.key
             }
@@ -100,7 +100,7 @@ export default {
 
             this.forwardGeocode(location).then(response => {
                 if (response) {
-                    this.getWeather(this.forecast.location.lat, this.forecast.location.lng);
+                    this.getWeather();
                 } else {
                     this.$refs.searchInputHelp.innerHTML = 'We were unable to find that location.';
                     return false;
