@@ -112,6 +112,16 @@ export default {
 </script>
 
 <style lang="scss">
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    html {
+        background: url(https://source.unsplash.com/1600x900/?nature,water,mountain,beach,forest) no-repeat center center fixed;
+        background-size: cover;
+    }
+
     #app {
         padding: 50px 0 50px;
         width: 90%;
