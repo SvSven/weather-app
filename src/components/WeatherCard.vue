@@ -1,5 +1,5 @@
 <template>
-    <div class="weather">
+    <div class="weather box">
         <div class="weather__header">
             <h1 class="weather__header__title">{{ forecast.location.name }}</h1>
             <time :datetime="forecast.current.dt | ISODateTime(forecast.location.timezone)" class="weather__header__time">

@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
+        <div class="container">
+            <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
+        </div>
     </div>
 </template>
 
