@@ -63,7 +63,7 @@ export default {
             } else if (unit === 'imperial') {
                 return '℉';
             } else {
-                return unit;
+                return '°';
             }
         }
     }
