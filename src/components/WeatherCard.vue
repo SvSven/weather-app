@@ -2,22 +2,24 @@
     <div class="weather">
         <div class="weather__header">
             <h1 class="weather__header__title">{{ forecast.location.name }}</h1>
-            <time :datetime="current.dt | ISODateTime(forecast.location.timezone)" class="weather__header__time">
-                {{ current.dt | shortDateTime(forecast.location.timezone) }}
+            <time :datetime="forecast.current.dt | ISODateTime(forecast.location.timezone)" class="weather__header__time">
+                {{ forecast.current.dt | shortDateTime(forecast.location.timezone) }}
             </time>
         </div>
 
         <div class="weather__current weather__summary">
             <div class="weather__summary__icon">
-                <img :src="`http://openweathermap.org/img/w/${current.weather[0].icon}.png`" alt="">
+                <img :src="`http://openweathermap.org/img/w/${forecast.current.weather[0].icon}.png`" alt="">
             </div>
 
-            <h2 class="weather__summary__text">{{ current.main.temp | roundTemperature }}&deg; {{ current.weather[0].main }}</h2>
+            <h2 class="weather__summary__text">
+                {{ forecast.current.main.temp | roundTemperature }}&deg; {{ forecast.current.weather[0].main }}
+            </h2>
         </div>
 
         <div class="weather__upcoming">
 
-            <div v-for="(report, index) in upcoming.slice(0, 5)" v-bind:key="index" class="weather__upcoming__item weather__summary">
+            <div v-for="(report, index) in forecast.upcoming.list.slice(0, 5)" v-bind:key="index" class="weather__upcoming__item weather__summary">
 
                 <time class="weather__summary__time" :datetime="report.dt | ISODateTime(forecast.location.timezone)">
                     {{ report.dt | shortDateTime(forecast.location.timezone) }}
@@ -43,16 +45,6 @@ export default {
             type: Object,
             required: true
         }
-    },
-    data () {
-        return {
-            current: this.forecast.current,
-            upcoming: this.forecast.upcoming.list
-        }
-    },
-    beforeUpdate: function() {
-        this.$set(this, 'current', this.forecast.current);
-        this.$set(this, 'upcoming', this.forecast.upcoming.list);
     },
     filters: {
         roundTemperature: function(temp) {
