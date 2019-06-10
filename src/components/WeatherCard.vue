@@ -13,7 +13,7 @@
             </div>
 
             <h2 class="weather__summary__text">
-                {{ forecast.current.main.temp | roundTemperature }}&deg; {{ forecast.current.weather[0].main }}
+                {{ forecast.current.main.temp | roundTemperature }}{{ forecast.units | unitSymbol }} {{ forecast.current.weather[0].main }}
             </h2>
         </div>
 
@@ -27,7 +27,7 @@
                     <img :src="`http://openweathermap.org/img/w/${report.weather[0].icon}.png`" alt="">
                 </div>
 
-                <h2 class="weather__summary__text">{{ report.main.temp | roundTemperature }}&deg;</h2>
+                <h2 class="weather__summary__text">{{ report.main.temp | roundTemperature }}{{ forecast.units | unitSymbol }}</h2>
                 <h2 class="weather__summary__text">{{ report.weather[0].main }}</h2>
             </div>
         </div>
@@ -56,6 +56,15 @@ export default {
         ISODateTime: function(dt, timezone) {
             const date = moment.unix(dt).utc();
             return date.tz(timezone).format();
+        },
+        unitSymbol: function(unit) {
+            if (unit === 'metric') {
+                return '℃';
+            } else if (unit === 'imperial') {
+                return '℉';
+            } else {
+                return unit;
+            }
         }
     }
 }
