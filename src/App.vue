@@ -1,21 +1,20 @@
 <template>
     <div id="app">
-        <div class="container">
-            <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
-            <div class="field search-field">
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input ref="searchInput" class="input" type="text" placeholder="Search for a location" v-on:keyup.enter="searchLocation">
-                    </div>
-                    <div class="control">
-                        <a class="button is-info" v-on:click="searchLocation">
-                            Search
-                        </a>
-                    </div>
+        <div class="field search-field box">
+            <h1 class="title is-2">Weather forecast</h1>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input ref="searchInput" class="input" type="text" placeholder="Search for a location" v-on:keyup.enter="searchLocation">
                 </div>
-                <p ref="searchInputHelp" class="help is-danger"></p>
+                <div class="control">
+                    <a class="button is-info" v-on:click="searchLocation">
+                        Search
+                    </a>
+                </div>
             </div>
+            <p ref="searchInputHelp" class="help is-danger"></p>
         </div>
+        <WeatherCard v-if="forecast.current && forecast.upcoming" v-bind:forecast="forecast" />
     </div>
 </template>
 
@@ -114,6 +113,13 @@ export default {
 
 <style lang="scss">
     #app {
-        padding-top: 50px;
+        padding: 50px 0 50px;
+        width: 90%;
+        max-width: 960px;
+        margin: auto;
+    }
+
+    .search-field {
+        padding-bottom: 10px;
     }
 </style>
