@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import moment from 'moment-timezone';
 
 export default {
     name: 'WeatherCard',
@@ -51,6 +52,14 @@ export default {
     filters: {
         roundTemperature: function(temp) {
             return Number.parseFloat(temp).toFixed(1);
+        },
+        shortDateTime: function(dt, timezone) {
+            const date = moment.unix(dt).utc();
+            return date.tz(timezone).format("ddd MMMM Do, HH:mm");
+        },
+        ISODateTime: function(dt, timezone) {
+            const date = moment.unix(dt).utc();
+            return date.tz(timezone).format();
         }
     }
 }
