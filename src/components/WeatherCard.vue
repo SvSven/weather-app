@@ -12,9 +12,8 @@
                 <img :src="`http://openweathermap.org/img/w/${forecast.current.weather[0].icon}.png`" alt="">
             </div>
 
-            <h2 class="weather__summary__text">
-                {{ forecast.current.main.temp | roundTemperature }}{{ forecast.units | unitSymbol }} {{ forecast.current.weather[0].main }}
-            </h2>
+            <h2 class="weather__summary__temperature">{{ forecast.current.main.temp | roundTemperature }}{{ forecast.units | unitSymbol }}</h2>
+            <h2 class="weather__summary__text">{{ forecast.current.weather[0].main }}</h2>
         </div>
 
         <div class="weather__upcoming">
@@ -27,7 +26,7 @@
                     <img :src="`http://openweathermap.org/img/w/${report.weather[0].icon}.png`" alt="">
                 </div>
 
-                <h2 class="weather__summary__text">{{ report.main.temp | roundTemperature }}{{ forecast.units | unitSymbol }}</h2>
+                <h2 class="weather__summary__temperature">{{ report.main.temp | roundTemperature }}{{ forecast.units | unitSymbol }}</h2>
                 <h2 class="weather__summary__text">{{ report.weather[0].main }}</h2>
             </div>
         </div>
@@ -84,8 +83,13 @@ export default {
         &__current {
             margin: 3px 0 20px 0;
 
-            .weather__summary__text {
+            .weather__summary__temperature {
                 font-size: 48px;
+            }
+
+            .weather__summary__text {
+                font-size: 28px;
+                margin-left: 15px;
             }
         }
 
@@ -102,8 +106,12 @@ export default {
                 margin-right: 5px;
             }
 
-            &__text {
+            &__temperature {
                 font-size: 24px;
+            }
+
+            &__text {
+                font-size: 18px;
             }
         }
 
